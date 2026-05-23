@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.carthigan.playmusic.api.models.TrackJson;
@@ -23,21 +23,16 @@ public class BrowseStationsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_browse_stations, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.rv_browse_stations);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
-        // We will reuse the TrackAdapter for now, but in reality, radio stations had a different card UI
-        // known as CuratedRadioPlayCard. We'll use the existing adapter to display mock stations.
-        TrackAdapter adapter = new TrackAdapter(track -> {
-            // Clicking a station would normally start playing a radio mix
+        StationAdapter adapter = new StationAdapter(track -> {
             if (getActivity() instanceof MainActivity) {
                 ((MainActivity) getActivity()).playTrackFromLibrary(track);
             }
-        }, track -> {
-            // Options for station
         });
 
         recyclerView.setAdapter(adapter);
-        adapter.setTracks(getMockStations());
+        adapter.setItems(getMockStations());
 
         return view;
     }

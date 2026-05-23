@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.carthigan.playmusic.api.models.TrackJson;
+import com.carthigan.playmusic.data.LocalMusicHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,13 +38,31 @@ public class ShopFragment extends Fragment {
     private List<TrackJson> getMockShopItems() {
         List<TrackJson> list = new ArrayList<>();
         
-        String[] titles = {"Random Access Memories", "1989", "Thriller", "Abbey Road", "The Dark Side of the Moon", "Rumours"};
-        String[] artists = {"Daft Punk", "Taylor Swift", "Michael Jackson", "The Beatles", "Pink Floyd", "Fleetwood Mac"};
+        if (getActivity() instanceof MainActivity) {
+            List<TrackJson> allAlbums = ((MainActivity) getActivity()).getLocalMusicHelper().getAlbums();
+            if (allAlbums != null && !allAlbums.isEmpty()) {
+                // Shuffle to get a random assortment for the storefront
+                java.util.Collections.shuffle(allAlbums);
+                int limit = Math.min(10, allAlbums.size());
+                list.addAll(allAlbums.subList(0, limit));
+                return list;
+            }
+        }
+        
+        // Absolute fallback if no local music exists
+        String[] titles = {"Awake", "Ascend", "Fallen Embers"};
+        String[] artists = {"Illenium", "Illenium", "Illenium"};
         
         for (int i = 0; i < titles.length; i++) {
             TrackJson t = new TrackJson();
             t.title = titles[i];
             t.artist = artists[i];
+            
+            t.albumArtRef = new ArrayList<>();
+            com.carthigan.playmusic.api.models.ImageRefJson img = new com.carthigan.playmusic.api.models.ImageRefJson();
+            img.url = "https://i.scdn.co/image/ab67616d0000b27376c666fb271b3e83b482cb8d";
+            t.albumArtRef.add(img);
+            
             list.add(t);
         }
         return list;

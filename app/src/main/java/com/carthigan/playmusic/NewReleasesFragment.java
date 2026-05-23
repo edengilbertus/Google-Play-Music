@@ -42,15 +42,15 @@ public class NewReleasesFragment extends Fragment {
         
         List<TrackJson> recommended = new ArrayList<>();
         recommended.add(createMock("1 step forward, 3 steps back", "Olivia Rodrigo", null));
-        recommended.add(createMock("ADHD Relief Music", "Greenred Productions", "https://upload.wikimedia.org/wikipedia/en/b/b4/Shape_Of_You_%28Official_Single_Cover%29.png"));
+        recommended.add(createMock("ADHD Relief Music", "Greenred Productions", "https://i.scdn.co/image/ab67616d0000b27376c666fb271b3e83b482cb8d"));
         recommended.add(createMock("24/5", "Mimi Webb", null));
-        recommended.add(createMock("Shape of You", "Ed Sheeran", "https://upload.wikimedia.org/wikipedia/en/b/b4/Shape_Of_You_%28Official_Single_Cover%29.png"));
+        recommended.add(createMock("Fractures", "Illenium", "https://i.scdn.co/image/ab67616d0000b27376c666fb271b3e83b482cb8d"));
         
         clusters.add(new ClusterAdapter.Cluster(getString(R.string.recommended_new_release_title), null, true, recommended));
 
         List<TrackJson> all = new ArrayList<>();
-        all.add(createMock("Havana", "Camila Cabello", "https://upload.wikimedia.org/wikipedia/en/9/98/Havana_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
-        all.add(createMock("99 Luftballons", "Nena", "https://upload.wikimedia.org/wikipedia/en/9/98/Havana_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
+        all.add(createMock("Crawl Outta Love", "Illenium", "https://upload.wikimedia.org/wikipedia/en/9/98/Crawl Outta Love_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
+        all.add(createMock("99 Luftballons", "Nena", "https://upload.wikimedia.org/wikipedia/en/9/98/Crawl Outta Love_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
         all.add(createMock("Not Enough", "Dabin, Stephanie Poetri", null));
         all.add(createMock("Bleachers", "", null));
         

@@ -131,28 +131,28 @@ public class LibraryTabFragment extends Fragment {
         List<TrackJson> list = new ArrayList<>();
         
         if ("PLAYLISTS".equals(tabName)) {
-            list.add(createMock("Last added", "Auto-Playlists", "https://upload.wikimedia.org/wikipedia/en/b/b4/Shape_Of_You_%28Official_Single_Cover%29.png"));
+            list.add(createMock("Last added", "Auto-Playlists", "https://i.scdn.co/image/ab67616d0000b27376c666fb271b3e83b482cb8d"));
             list.add(createMock("Favorites", "Auto-Playlists", null));
         } else if ("ARTISTS".equals(tabName)) {
-            list.add(createMock("Above & Beyond", "", "https://upload.wikimedia.org/wikipedia/en/9/98/Havana_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
-            list.add(createMock("Andrea Bocelli", "", "https://upload.wikimedia.org/wikipedia/en/b/b4/Shape_Of_You_%28Official_Single_Cover%29.png"));
+            list.add(createMock("Above & Beyond", "", "https://upload.wikimedia.org/wikipedia/en/9/98/Crawl Outta Love_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
+            list.add(createMock("Andrea Bocelli", "", "https://i.scdn.co/image/ab67616d0000b27376c666fb271b3e83b482cb8d"));
             list.add(createMock("Bleachers", "", null));
             list.add(createMock("Boygenius", "", null));
         } else if ("ALBUMS".equals(tabName)) {
             list.add(createMock("1 step forward, 3 steps back", "Olivia Rodrigo", null));
-            list.add(createMock("99 Luftballons", "Nena", "https://upload.wikimedia.org/wikipedia/en/9/98/Havana_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
+            list.add(createMock("99 Luftballons", "Nena", "https://upload.wikimedia.org/wikipedia/en/9/98/Crawl Outta Love_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
             list.add(createMock("24/5", "Mimi Webb", null));
-            list.add(createMock("ADHD Relief Music", "Greenred Productions", "https://upload.wikimedia.org/wikipedia/en/b/b4/Shape_Of_You_%28Official_Single_Cover%29.png"));
+            list.add(createMock("ADHD Relief Music", "Greenred Productions", "https://i.scdn.co/image/ab67616d0000b27376c666fb271b3e83b482cb8d"));
         } else if ("GENRES".equals(tabName)) {
-            list.add(createMock("Alternative", "", "https://upload.wikimedia.org/wikipedia/en/9/98/Havana_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
+            list.add(createMock("Alternative", "", "https://upload.wikimedia.org/wikipedia/en/9/98/Crawl Outta Love_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
             list.add(createMock("Alternative/Rock", "", null));
-            list.add(createMock("Classical", "", "https://upload.wikimedia.org/wikipedia/en/b/b4/Shape_Of_You_%28Official_Single_Cover%29.png"));
+            list.add(createMock("Classical", "", "https://i.scdn.co/image/ab67616d0000b27376c666fb271b3e83b482cb8d"));
             list.add(createMock("Country", "", null));
         } else {
             // SONGS and fallback
             list.add(createMock("Not Enough", "Dabin, Stephanie Poetri", null));
-            list.add(createMock("Shape of You", "Ed Sheeran", "https://upload.wikimedia.org/wikipedia/en/b/b4/Shape_Of_You_%28Official_Single_Cover%29.png"));
-            list.add(createMock("Havana", "Camila Cabello", "https://upload.wikimedia.org/wikipedia/en/9/98/Havana_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
+            list.add(createMock("Fractures", "Illenium", "https://i.scdn.co/image/ab67616d0000b27376c666fb271b3e83b482cb8d"));
+            list.add(createMock("Crawl Outta Love", "Illenium", "https://upload.wikimedia.org/wikipedia/en/9/98/Crawl Outta Love_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
         }
         
         return list;

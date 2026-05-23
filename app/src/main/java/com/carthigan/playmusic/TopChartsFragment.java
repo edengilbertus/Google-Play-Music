@@ -59,9 +59,9 @@ public class TopChartsFragment extends Fragment {
         } else {
             // Absolute fallback mock
             topSongs.add(createMock("1 step forward, 3 steps back", "Olivia Rodrigo", null));
-            topSongs.add(createMock("Shape of You", "Ed Sheeran", "https://upload.wikimedia.org/wikipedia/en/b/b4/Shape_Of_You_%28Official_Single_Cover%29.png"));
+            topSongs.add(createMock("Fractures", "Illenium", "https://i.scdn.co/image/ab67616d0000b27376c666fb271b3e83b482cb8d"));
             
-            topAlbums.add(createMock("Havana", "Camila Cabello", "https://upload.wikimedia.org/wikipedia/en/9/98/Havana_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
+            topAlbums.add(createMock("Crawl Outta Love", "Illenium", "https://upload.wikimedia.org/wikipedia/en/9/98/Crawl Outta Love_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
             topAlbums.add(createMock("24/5", "Mimi Webb", null));
         }
 

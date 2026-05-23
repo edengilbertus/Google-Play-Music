@@ -428,19 +428,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tracksList = new ArrayList<>();
 
         TrackJson t1 = new TrackJson();
-        t1.title = "Havana";
-        t1.artist = "Camila Cabello";
+        t1.title = "Crawl Outta Love";
+        t1.artist = "Illenium";
         t1.albumArtRef = new ArrayList<>();
         ImageRefJson i1 = new ImageRefJson();
-        i1.url = "https://upload.wikimedia.org/wikipedia/en/9/98/Havana_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png";
+        i1.url = "https://upload.wikimedia.org/wikipedia/en/9/98/Crawl Outta Love_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png";
         t1.albumArtRef.add(i1);
 
         TrackJson t2 = new TrackJson();
-        t2.title = "Shape of You";
-        t2.artist = "Ed Sheeran";
+        t2.title = "Fractures";
+        t2.artist = "Illenium";
         t2.albumArtRef = new ArrayList<>();
         ImageRefJson i2 = new ImageRefJson();
-        i2.url = "https://upload.wikimedia.org/wikipedia/en/b/b4/Shape_Of_You_%28Official_Single_Cover%29.png";
+        i2.url = "https://i.scdn.co/image/ab67616d0000b27376c666fb271b3e83b482cb8d";
         t2.albumArtRef.add(i2);
 
         allTracksList.add(t1);

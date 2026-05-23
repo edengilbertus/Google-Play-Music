@@ -42,9 +42,9 @@ public class PodcastsFragment extends Fragment {
         List<TrackJson> podcasts = new ArrayList<>();
         
         podcasts.add(createMockPodcast("1. The History of Rome", "Mike Duncan", null));
-        podcasts.add(createMockPodcast("Episode 142: Reply All", "Gimlet Media", "https://upload.wikimedia.org/wikipedia/en/9/98/Havana_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
+        podcasts.add(createMockPodcast("Episode 142: Reply All", "Gimlet Media", "https://upload.wikimedia.org/wikipedia/en/9/98/Crawl Outta Love_%28featuring_Young_Thug%29_%28Official_Single_Cover%29.png"));
         podcasts.add(createMockPodcast("Stuff You Should Know - 100", "iHeartRadio", null));
-        podcasts.add(createMockPodcast("Hardcore History: Blueprint for Armageddon", "Dan Carlin", "https://upload.wikimedia.org/wikipedia/en/b/b4/Shape_Of_You_%28Official_Single_Cover%29.png"));
+        podcasts.add(createMockPodcast("Hardcore History: Blueprint for Armageddon", "Dan Carlin", "https://i.scdn.co/image/ab67616d0000b27376c666fb271b3e83b482cb8d"));
         podcasts.add(createMockPodcast("The Daily: What to know today", "The New York Times", null));
         
         return podcasts;
