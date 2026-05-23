@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private List<TrackJson> allTracksList = new ArrayList<>();
     private List<TrackJson> tracksList = new ArrayList<>();
-    private List<TrackJson> playbackQueue = new ArrayList<>();
     private int currentTrackIndex = -1;
     private TrackJson currentPlayingTrack = null;
     private Runnable pendingNavAction = null;
@@ -540,7 +539,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void playPrevTrack() {
-        if (playbackQueue.isEmpty()) return;
+        if (tracksList.isEmpty()) return;
 
         if (mediaPlayer != null && mediaPlayer.getCurrentPosition() > 3000) {
             // If played more than 3 seconds, restart current track
@@ -554,7 +553,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (currentTrackIndex > 0) {
                 playTrack(currentTrackIndex - 1);
             } else if (repeatMode == 1 || currentTrackIndex == -1) {
-                playTrack(playbackQueue.size() - 1);
+                playTrack(tracksList.size() - 1);
             }
         }
     }
@@ -587,9 +586,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (playerPagerAdapter != null) {
             // Provide the current track + the rest of the queue
             List<TrackJson> upcomingQueue = new ArrayList<>();
-            if (currentTrackIndex >= 0 && currentTrackIndex < playbackQueue.size()) {
+            if (currentTrackIndex >= 0 && currentTrackIndex < tracksList.size()) {
                 // Show upcoming tracks in queue
-                upcomingQueue.addAll(playbackQueue.subList(currentTrackIndex + 1, playbackQueue.size()));
+                upcomingQueue.addAll(tracksList.subList(currentTrackIndex + 1, tracksList.size()));
             }
             playerPagerAdapter.updateData(track, upcomingQueue);
         }
@@ -743,14 +742,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (actionPlayNext != null) {
             actionPlayNext.setOnClickListener(v -> {
                 bottomSheetDialog.dismiss();
-                if (playbackQueue.isEmpty()) {
+                if (tracksList.isEmpty()) {
                     playTrackFromLibrary(track);
                 } else {
                     int insertIndex = currentTrackIndex + 1;
-                    if (insertIndex > playbackQueue.size()) insertIndex = playbackQueue.size();
-                    playbackQueue.add(insertIndex, track);
+                    if (insertIndex > tracksList.size()) insertIndex = tracksList.size();
+                    tracksList.add(insertIndex, track);
+                    if (trackAdapter != null) trackAdapter.setTracks(tracksList);
                     if (playerPagerAdapter != null) {
-                        playerPagerAdapter.updateData(currentPlayingTrack, new ArrayList<>(playbackQueue.subList(currentTrackIndex + 1, playbackQueue.size())));
+                        playerPagerAdapter.updateData(currentPlayingTrack, new ArrayList<>(tracksList.subList(currentTrackIndex + 1, tracksList.size())));
                     }
                     Toast.makeText(this, "Playing next: " + track.title, Toast.LENGTH_SHORT).show();
                 }
@@ -761,12 +761,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (actionAddToQueue != null) {
             actionAddToQueue.setOnClickListener(v -> {
                 bottomSheetDialog.dismiss();
-                if (playbackQueue.isEmpty()) {
+                if (tracksList.isEmpty()) {
                     playTrackFromLibrary(track);
                 } else {
-                    playbackQueue.add(track);
+                    tracksList.add(track);
+                    if (trackAdapter != null) trackAdapter.setTracks(tracksList);
                     if (playerPagerAdapter != null) {
-                        playerPagerAdapter.updateData(currentPlayingTrack, new ArrayList<>(playbackQueue.subList(currentTrackIndex + 1, playbackQueue.size())));
+                        playerPagerAdapter.updateData(currentPlayingTrack, new ArrayList<>(tracksList.subList(currentTrackIndex + 1, tracksList.size())));
                     }
                     Toast.makeText(this, "Added to queue: " + track.title, Toast.LENGTH_SHORT).show();
                 }
