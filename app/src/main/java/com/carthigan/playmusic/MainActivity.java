@@ -417,9 +417,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Glide.with(this)
                     .load(Uri.parse(photoUri))
                     .circleCrop()
-                    .placeholder(R.mipmap.ic_launcher_round)
-                    .error(R.mipmap.ic_launcher_round)
+                    .placeholder(R.drawable.ic_default_avatar)
+                    .error(R.drawable.ic_default_avatar)
                     .into(ivAvatar);
+        } else {
+            ivAvatar.setImageResource(R.drawable.ic_default_avatar);
         }
     }
 

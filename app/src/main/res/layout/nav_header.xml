@@ -11,7 +11,7 @@
         android:id="@+id/nav_header_profile_image"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@mipmap/ic_launcher_round"
+        android:src="@drawable/ic_default_avatar"
         android:layout_marginBottom="16dp" />
 
     <TextView
