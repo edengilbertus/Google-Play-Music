@@ -61,6 +61,9 @@ public class MusicService extends Service {
                 isPlaying = intent.getBooleanExtra(EXTRA_IS_PLAYING, false);
                 String artUrl = intent.getStringExtra(EXTRA_ART_URL);
 
+                currentArt = null;
+                showNotification();
+
                 if (artUrl != null && !artUrl.isEmpty()) {
                     Glide.with(this)
                             .asBitmap()
@@ -73,10 +76,13 @@ public class MusicService extends Service {
                                 }
                                 @Override
                                 public void onLoadCleared(@Nullable Drawable placeholder) {}
+                                
+                                @Override
+                                public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                                    currentArt = null;
+                                    showNotification();
+                                }
                             });
-                } else {
-                    currentArt = null;
-                    showNotification();
                 }
             } else if (ACTION_PLAY_PAUSE.equals(action) || ACTION_NEXT.equals(action) || ACTION_PREV.equals(action)) {
                 // Relay action to MainActivity
