@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="Settings"
+    android:key="stream_settings">
+    
+    <PreferenceCategory
+        android:title="Account"
+        android:key="settings_category_account_key">
+        <Preference
+            android:title="Google Account"
+            android:summary="No account selected"
+            android:key="account_settings_key"/>
+        <Preference
+            android:title="Refresh"
+            android:key="refresh_key"/>
+    </PreferenceCategory>
+    
+    <PreferenceCategory
+        android:title="General"
+        android:key="settings_category_general_key">
+        <Preference
+            android:title="Export playlists"
+            android:key="settings_playlist_export_key"
+            android:summary="Export your playlists to a CSV file"/>
+        <Preference
+            android:title="Sleep timer"
+            android:key="sleep_timer_settings_key"/>
+    </PreferenceCategory>
+    
+    <PreferenceCategory
+        android:title="Privacy &amp; location"
+        android:key="settings_category_privacy_location_key">
+        <Preference
+            android:title="Manage activity history"
+            android:key="settings_activity_history_key"/>
+        <Preference
+            android:title="Delete recommendation history"
+            android:key="delete_recommendation_history_setting_key"/>
+        <Preference
+            android:title="Delete my library"
+            android:key="delete_my_library_setting_key"/>
+    </PreferenceCategory>
+    
+    <PreferenceCategory
+        android:title="Notifications"
+        android:key="settings_category_notifications_key">
+        <SwitchPreferenceCompat
+            android:title="Marketing notifications"
+            android:key="marketing_notifications_settings_key"
+            android:summary="Receive updates about new features and offers"/>
+        <SwitchPreferenceCompat
+            android:title="Headphone notification"
+            android:summary="Show a notification when headphones are connected"
+            android:key="headphone_notification_settings_key"/>
+    </PreferenceCategory>
+    
+    <PreferenceCategory
+        android:title="Playback"
+        android:key="settings_category_streaming_key">
+        <Preference
+            android:title="Equalizer"
+            android:key="equalizer_settings_key"
+            android:summary="Adjust audio settings"/>
+        <SwitchPreferenceCompat
+            android:title="Stream only on Wi-Fi"
+            android:key="stream_only_on_wifi_key"
+            android:summary="Reduce data usage by streaming only on Wi-Fi"
+            app:disableDependentsState="true"/>
+        <Preference
+            android:title="Quality on mobile network"
+            android:key="stream_quality_for_mobile_key"
+            android:summary="Normal"
+            app:dependency="stream_only_on_wifi_key"/>
+        <Preference
+            android:title="Quality on Wi-Fi network"
+            android:key="stream_quality_for_wifi_key"
+            android:summary="Normal"/>
+        <SwitchPreferenceCompat
+            android:title="Cache music while streaming"
+            android:key="cache_streamed_key"
+            android:defaultValue="true"/>
+        <SwitchPreferenceCompat
+            android:title="Autoplay"
+            android:key="media_key_autoplay_toggle_key"
+            android:summary="Automatically start playing when connected to Bluetooth or car"
+            android:defaultValue="true"/>
+        <SwitchPreferenceCompat
+            android:title="Block explicit songs in radio"
+            android:key="content_filter_key"/>
+        <SwitchPreferenceCompat
+            android:title="Show album art on lock screen"
+            android:key="content_filter_show_album_art_on_lockscreen_key"
+            android:defaultValue="true"/>
+    </PreferenceCategory>
+    
+    <PreferenceCategory
+        android:title="Downloading"
+        android:key="settings_category_download_key">
+        <SwitchPreferenceCompat
+            android:title="Download only on Wi-Fi"
+            android:key="offlinedl_only_on_wifi_key"
+            android:summary="Reduce data usage by downloading only on Wi-Fi"
+            android:defaultValue="true"/>
+        <Preference
+            android:title="Download quality"
+            android:key="download_quality_key"
+            android:summary="Normal"/>
+        <SwitchPreferenceCompat
+            android:title="Auto-download"
+            android:key="autocache_key"
+            android:summary="Automatically download recently played music"/>
+        <Preference
+            android:title="Clear cache"
+            android:key="clear_cache_settings_key"
+            android:summary="0 MB used"/>
+        <Preference
+            android:title="Manage downloads"
+            android:key="download_queue_key"/>
+    </PreferenceCategory>
+    
+    <PreferenceCategory
+        android:title="About"
+        android:key="settings_category_developer_key">
+        <Preference
+            android:title="Privacy policy"
+            android:key="privacy_policy_key"/>
+        <Preference
+            android:title="Version"
+            android:key="music_version_key"
+            android:summary="0.0.1 Public Beta"/>
+    </PreferenceCategory>
+</PreferenceScreen>

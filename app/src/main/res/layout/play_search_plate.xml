@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/search_plate"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="8dp"
+    android:visibility="gone"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="#FFFFFF">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/search_back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_back_grey"
+            android:scaleType="centerInside"
+            android:padding="12dp"
+            android:contentDescription="@string/accessibility_search_back" />
+
+        <EditText
+            android:id="@+id/search_box_text_input"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:hint="@string/search_hint"
+            android:textColorHint="#9E9E9E"
+            android:textColor="#212121"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+            android:inputType="textNoSuggestions" />
+
+        <ImageButton
+            android:id="@+id/action_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_mic_grey"
+            android:scaleType="centerInside"
+            android:padding="12dp"
+            android:contentDescription="@string/accessibility_search_mic" />
+            
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

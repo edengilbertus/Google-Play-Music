@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF5722</color>
+    <color name="colorPrimaryDark">#E64A19</color>
+    <color name="colorAccent">#D64214</color>
+
+    <color name="backgroundColor">#FAFAFA</color>
+    <color name="songTimerColor">#9E9E9E</color>
+    <color name="tectColor">#212121</color>
+    
+    <color name="gpm_primary">#FF5722</color>
+    <color name="gpm_secondary">#D64214</color>
+    <color name="gpm_background">#FFFFFF</color>
+    <color name="gpm_text_primary">#212121</color>
+    <color name="gpm_text_secondary">#757575</color>
+    
+    <color name="gpm_gray_light">#EEEEEE</color>
+</resources>

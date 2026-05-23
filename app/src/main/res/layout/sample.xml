@@ -1,0 +1,314 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gpm_background">
+
+    <!-- Mini Player (Collapsed State) -->
+    <LinearLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/gpm_background"
+        android:clickable="true"
+        android:elevation="4dp">
+
+        <ImageView
+            android:id="@+id/songs_cover_one"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/songs_cover" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <TextView
+                android:id="@+id/mini_songs_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/gpm_text_primary"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="Havana" />
+
+            <TextView
+                android:id="@+id/mini_songs_artist_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/gpm_text_secondary"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="Camila Cabello" />
+        </LinearLayout>
+
+        <!-- Mini Play / Pause -->
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp">
+            
+            <ImageButton
+                android:id="@+id/play_button"
+                android:contentDescription="Play"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_play"
+                android:scaleType="centerInside"
+                android:padding="8dp"
+                app:tint="@color/gpm_text_primary" />
+
+            <ImageButton
+                android:id="@+id/pause_button"
+                android:contentDescription="Pause"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_pause"
+                android:scaleType="centerInside"
+                android:padding="8dp"
+                app:tint="@color/gpm_text_primary"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- Expanded Player Layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_layout"
+        android:orientation="vertical">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/player_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Track Info -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingHorizontal="32dp">
+
+            <TextView
+                android:id="@+id/songs_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:textColor="@color/gpm_text_primary"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                tools:text="Havana (Camila Cabello song)" />
+
+            <TextView
+                android:id="@+id/songs_artist_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="4dp"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                tools:text="Camila Cabello" />
+        </LinearLayout>
+
+        <!-- Seekbar Area -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/StartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/gpm_text_secondary"
+                tools:text="1:05" />
+
+            <SeekBar
+                android:id="@+id/seekBar3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:progressTint="@color/colorPrimary"
+                android:thumbTint="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/endTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/gpm_text_secondary"
+                tools:text="3:06" />
+        </LinearLayout>
+
+            <!-- Main Controls -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp">
+
+            <!-- Empty space left -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:contentDescription="Thumbs Up"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_thumbs_up_default"
+                android:scaleType="centerInside"
+                android:padding="8dp" />
+
+            <!-- Spacer between Thumbs Up and Prev -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:contentDescription="Previous"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_skip_previous"
+                android:scaleType="centerInside"
+                android:padding="8dp"
+                app:tint="@color/gpm_text_primary" />
+
+            <!-- Spacer between Prev and Play -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"/>
+
+            <!-- Play / Pause -->
+            <FrameLayout
+                android:layout_width="64dp"
+                android:layout_height="64dp">
+                
+                <ImageButton
+                    android:id="@+id/play_button_main"
+                    android:contentDescription="Play Main"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/play_highlight_round_overlay_light"
+                    android:src="@drawable/ic_play"
+                    android:padding="16dp"
+                    android:scaleType="centerInside" />
+                    
+                <ImageButton
+                    android:id="@+id/pause_button_main"
+                    android:contentDescription="Pause Main"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/play_highlight_round_overlay_light"
+                    android:src="@drawable/ic_pause"
+                    android:padding="16dp"
+                    android:scaleType="centerInside"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <!-- Spacer between Play and Next -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"/>
+
+            <ImageButton
+                android:id="@+id/imageButton_next"
+                android:contentDescription="Next"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_skip_next"
+                android:scaleType="centerInside"
+                android:padding="8dp"
+                app:tint="@color/gpm_text_primary" />
+
+            <!-- Spacer between Next and Thumbs Down -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:id="@+id/button"
+                android:contentDescription="Thumbs Down"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_thumbs_down_default"
+                android:scaleType="centerInside"
+                android:padding="8dp" />
+
+            <!-- Empty space right -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <!-- Bottom Options (Shuffle / Repeat) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="16dp">
+
+            <ImageButton
+                android:id="@+id/btn_repeat"
+                android:contentDescription="Repeat"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_repeat_dark"
+                android:padding="12dp"
+                android:scaleType="centerInside"
+                android:layout_marginEnd="64dp" />
+
+            <ImageButton
+                android:id="@+id/btn_shuffle"
+                android:contentDescription="@string/accessibility_shuffle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_shuffle_dark"
+                android:padding="12dp"
+                android:scaleType="centerInside" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

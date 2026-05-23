@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_listen_now"
+            android:icon="@drawable/ic_listen_now"
+            android:title="Listen Now" />
+        <item
+            android:id="@+id/nav_recents"
+            android:icon="@drawable/ic_recents"
+            android:title="Recents" />
+        <item
+            android:id="@+id/nav_top_charts"
+            android:icon="@drawable/ic_top_charts"
+            android:title="Top charts" />
+        <item
+            android:id="@+id/nav_new_releases"
+            android:icon="@drawable/ic_new_releases"
+            android:title="New releases" />
+        <item
+            android:id="@+id/nav_music_library"
+            android:icon="@drawable/ic_music_library"
+            android:title="Music library" />
+        <item
+            android:id="@+id/nav_podcasts"
+            android:icon="@drawable/ic_podcasts"
+            android:title="Podcasts" />
+        <item
+            android:id="@+id/nav_browse_stations"
+            android:icon="@drawable/ic_browse_stations"
+            android:title="Browse stations" />
+        <item
+            android:id="@+id/nav_shop"
+            android:icon="@drawable/ic_shop"
+            android:title="Shop" />
+    </group>
+    
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="Settings" />
+            <item
+                android:id="@+id/nav_help_feedback"
+                android:icon="@drawable/ic_help"
+                android:title="Help &amp; feedback" />
+        </menu>
+    </item>
+</menu>

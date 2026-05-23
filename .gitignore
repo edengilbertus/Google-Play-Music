@@ -1,0 +1,16 @@
+
+# Ignore build and decompiled folders
+build/
+docs/
+GPM_API_Docs.md
+.gradle/
+.idea/
+fix.patch
+.worktrees/
+GPM_decompiled/
+com_google_android_music_8_28_8916_1_V_89161_minAPI16nodpi_apkmirror.apk
+migrate_to_androidx.sh
+.DS_Store
+*.DS_Store
+build/
+GPM_API_Docs.md
