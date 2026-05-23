@@ -16,6 +16,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.transition.Fade;
+import android.transition.TransitionManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private List<TrackJson> playbackQueue = new ArrayList<>();
     private int currentTrackIndex = -1;
     private TrackJson currentPlayingTrack = null;
+    private Runnable pendingNavAction = null;
     private MediaPlayer mediaPlayer;
     private AudioManager audioManager;
     private AudioManager.OnAudioFocusChangeListener audioFocusChangeListener;
@@ -125,6 +128,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void openLibraryDetail(String type, long id, String title, String subtitle, String artUri) {
+        TransitionManager.beginDelayedTransition(findViewById(R.id.main_coordinator), new Fade());
+        
         if (mainToolbar != null) mainToolbar.setVisibility(View.GONE);
         if (searchPlate != null) searchPlate.setVisibility(View.GONE);
         if (settingsToolbar != null) settingsToolbar.setVisibility(View.GONE);
@@ -135,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
         
         getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
                 .replace(R.id.fragment_container, LibraryDetailFragment.newInstance(type, id, title, subtitle, artUri))
                 .addToBackStack(null)
                 .commit();
@@ -190,6 +196,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, mainToolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
+        drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                if (pendingNavAction != null) {
+                    pendingNavAction.run();
+                    pendingNavAction = null;
+                }
+            }
+        });
         toggle.syncState();
 
         ImageButton searchBackButton = findViewById(R.id.search_back_button);
@@ -854,7 +869,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    private void switchFragment(androidx.fragment.app.Fragment fragment) {
+        TransitionManager.beginDelayedTransition(findViewById(R.id.main_coordinator), new Fade());
+        
+        if (mainToolbar != null) mainToolbar.setVisibility(View.VISIBLE);
+        if (searchPlate != null) searchPlate.setVisibility(View.GONE);
+        if (settingsToolbar != null) settingsToolbar.setVisibility(View.GONE);
+        if (libraryTabs != null) libraryTabs.setVisibility(View.GONE);
+
+        rvMainContent.setVisibility(View.GONE);
+        if (libraryViewPager != null) libraryViewPager.setVisibility(View.GONE);
+        findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
+
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+                .replace(R.id.fragment_container, fragment)
+                .commit();
+    }
+
     private void showSettings() {
+        TransitionManager.beginDelayedTransition(findViewById(R.id.main_coordinator), new Fade());
+        
         if (mainToolbar != null) mainToolbar.setVisibility(View.GONE);
         if (searchPlate != null) searchPlate.setVisibility(View.GONE);
         if (settingsToolbar != null) settingsToolbar.setVisibility(View.VISIBLE);
@@ -865,11 +900,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
         
         getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
                 .replace(R.id.fragment_container, new SettingsFragment())
                 .commit();
     }
 
     private void hideSettings() {
+        TransitionManager.beginDelayedTransition(findViewById(R.id.main_coordinator), new Fade());
+        
         findViewById(R.id.fragment_container).setVisibility(View.GONE);
         if (settingsToolbar != null) settingsToolbar.setVisibility(View.GONE);
         if (searchPlate != null) searchPlate.setVisibility(View.GONE);
@@ -877,96 +915,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void showShop() {
-        if (mainToolbar != null) mainToolbar.setVisibility(View.VISIBLE);
-        if (searchPlate != null) searchPlate.setVisibility(View.GONE);
-        if (settingsToolbar != null) settingsToolbar.setVisibility(View.GONE);
-        if (libraryTabs != null) libraryTabs.setVisibility(View.GONE);
-        
-        rvMainContent.setVisibility(View.GONE);
-        if (libraryViewPager != null) libraryViewPager.setVisibility(View.GONE);
-        findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
-        
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new ShopFragment())
-                .commit();
+        switchFragment(new ShopFragment());
     }
 
     private void showNewReleases() {
-        if (mainToolbar != null) mainToolbar.setVisibility(View.VISIBLE);
-        if (searchPlate != null) searchPlate.setVisibility(View.GONE);
-        if (settingsToolbar != null) settingsToolbar.setVisibility(View.GONE);
-        if (libraryTabs != null) libraryTabs.setVisibility(View.GONE);
-        
-        rvMainContent.setVisibility(View.GONE);
-        if (libraryViewPager != null) libraryViewPager.setVisibility(View.GONE);
-        findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
-        
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new NewReleasesFragment())
-                .commit();
+        switchFragment(new NewReleasesFragment());
     }
 
     private void showBrowseStations() {
-        if (mainToolbar != null) mainToolbar.setVisibility(View.VISIBLE);
-        if (searchPlate != null) searchPlate.setVisibility(View.GONE);
-        if (settingsToolbar != null) settingsToolbar.setVisibility(View.GONE);
-        if (libraryTabs != null) libraryTabs.setVisibility(View.GONE);
-        
-        rvMainContent.setVisibility(View.GONE);
-        if (libraryViewPager != null) libraryViewPager.setVisibility(View.GONE);
-        findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
-        
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new BrowseStationsFragment())
-                .commit();
+        switchFragment(new BrowseStationsFragment());
     }
 
     private void showPodcasts() {
-        if (mainToolbar != null) mainToolbar.setVisibility(View.VISIBLE);
-        if (searchPlate != null) searchPlate.setVisibility(View.GONE);
-        if (settingsToolbar != null) settingsToolbar.setVisibility(View.GONE);
-        if (libraryTabs != null) libraryTabs.setVisibility(View.GONE);
-
-        rvMainContent.setVisibility(View.GONE);
-        if (libraryViewPager != null) libraryViewPager.setVisibility(View.GONE);
-        findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
-
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new PodcastsFragment())
-                .commit();
+        switchFragment(new PodcastsFragment());
     }
 
     private void showTopCharts() {
-        if (mainToolbar != null) mainToolbar.setVisibility(View.VISIBLE);
-        if (searchPlate != null) searchPlate.setVisibility(View.GONE);
-        if (settingsToolbar != null) settingsToolbar.setVisibility(View.GONE);
-        if (libraryTabs != null) libraryTabs.setVisibility(View.GONE);
-        
-        rvMainContent.setVisibility(View.GONE);
-        if (libraryViewPager != null) libraryViewPager.setVisibility(View.GONE);
-        findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
-        
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new TopChartsFragment())
-                .commit();
+        switchFragment(new TopChartsFragment());
     }
 
     private void showRecents() {
-        if (mainToolbar != null) mainToolbar.setVisibility(View.VISIBLE);
-        if (searchPlate != null) searchPlate.setVisibility(View.GONE);
-        if (settingsToolbar != null) settingsToolbar.setVisibility(View.GONE);
-        if (libraryTabs != null) libraryTabs.setVisibility(View.GONE);
-
-        rvMainContent.setVisibility(View.GONE);
-        if (libraryViewPager != null) libraryViewPager.setVisibility(View.GONE);
-        findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
-
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new RecentsFragment())
-                .commit();
+        switchFragment(new RecentsFragment());
     }
 
     private void showListenNow() {
+        TransitionManager.beginDelayedTransition(findViewById(R.id.main_coordinator), new Fade());
         hideSettings();
         if (libraryTabs != null) libraryTabs.setVisibility(View.GONE);
         if (libraryViewPager != null) libraryViewPager.setVisibility(View.GONE);
@@ -1002,6 +975,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void showMusicLibrary() {
+        TransitionManager.beginDelayedTransition(findViewById(R.id.main_coordinator), new Fade());
         hideSettings();
         rvMainContent.setVisibility(View.GONE);
         if (libraryTabs != null) libraryTabs.setVisibility(View.VISIBLE);
