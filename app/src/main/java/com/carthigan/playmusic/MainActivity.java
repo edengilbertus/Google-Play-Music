@@ -1085,48 +1085,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_listen_now) {
-            showListenNow();
-            if (searchBox != null) searchBox.setHint("Listen Now");
-            if (mainToolbar != null) mainToolbar.setTitle("Listen Now");
-        } else if (id == R.id.nav_recents) {
-            showRecents();
-            if (searchBox != null) searchBox.setHint("Recents");
-            if (mainToolbar != null) mainToolbar.setTitle("Recents");
-        } else if (id == R.id.nav_music_library) {
-            showMusicLibrary();
-            if (searchBox != null) searchBox.setHint("Music library");
-            if (mainToolbar != null) mainToolbar.setTitle("Music library");
-        } else if (id == R.id.nav_podcasts) {
-            showPodcasts();
-            if (searchBox != null) searchBox.setHint(R.string.title_podcasts);
-            if (mainToolbar != null) mainToolbar.setTitle(R.string.title_podcasts);
-        } else if (id == R.id.nav_top_charts) {
-            showTopCharts();
-            if (searchBox != null) searchBox.setHint("Top charts");
-            if (mainToolbar != null) mainToolbar.setTitle("Top charts");
-        } else if (id == R.id.nav_new_releases) {
-            showNewReleases();
-            if (searchBox != null) searchBox.setHint("New releases");
-            if (mainToolbar != null) mainToolbar.setTitle("New releases");
-        } else if (id == R.id.nav_settings) {
-            showSettings();
-        } else if (id == R.id.nav_browse_stations) {
-            showBrowseStations();
-            if (searchBox != null) searchBox.setHint("Browse stations");
-            if (mainToolbar != null) mainToolbar.setTitle("Browse stations");
-        } else if (id == R.id.nav_help_feedback) {
-            android.content.Intent browserIntent = new android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse("https://t.me/carthigan"));
-            startActivity(browserIntent);
-        } else if (id == R.id.nav_shop) {
-            showShop();
-            if (searchBox != null) searchBox.setHint("Shop");
-            if (mainToolbar != null) mainToolbar.setTitle("Shop");
-        } else {
-            showListenNow();
-            if (searchBox != null) searchBox.setHint(item.getTitle());
-            if (mainToolbar != null) mainToolbar.setTitle(item.getTitle());
-        }
+        pendingNavAction = () -> {
+            if (id == R.id.nav_listen_now) {
+                showListenNow();
+                if (searchBox != null) searchBox.setHint("Listen Now");
+                if (mainToolbar != null) mainToolbar.setTitle("Listen Now");
+            } else if (id == R.id.nav_recents) {
+                showRecents();
+                if (searchBox != null) searchBox.setHint("Recents");
+                if (mainToolbar != null) mainToolbar.setTitle("Recents");
+            } else if (id == R.id.nav_music_library) {
+                showMusicLibrary();
+                if (searchBox != null) searchBox.setHint("Music library");
+                if (mainToolbar != null) mainToolbar.setTitle("Music library");
+            } else if (id == R.id.nav_podcasts) {
+                showPodcasts();
+                if (searchBox != null) searchBox.setHint(R.string.title_podcasts);
+                if (mainToolbar != null) mainToolbar.setTitle(R.string.title_podcasts);
+            } else if (id == R.id.nav_top_charts) {
+                showTopCharts();
+                if (searchBox != null) searchBox.setHint("Top charts");
+                if (mainToolbar != null) mainToolbar.setTitle("Top charts");
+            } else if (id == R.id.nav_new_releases) {
+                showNewReleases();
+                if (searchBox != null) searchBox.setHint("New releases");
+                if (mainToolbar != null) mainToolbar.setTitle("New releases");
+            } else if (id == R.id.nav_settings) {
+                showSettings();
+            } else if (id == R.id.nav_browse_stations) {
+                showBrowseStations();
+                if (searchBox != null) searchBox.setHint("Browse stations");
+                if (mainToolbar != null) mainToolbar.setTitle("Browse stations");
+            } else if (id == R.id.nav_help_feedback) {
+                android.content.Intent browserIntent = new android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse("https://t.me/carthigan"));
+                startActivity(browserIntent);
+            } else if (id == R.id.nav_shop) {
+                showShop();
+                if (searchBox != null) searchBox.setHint("Shop");
+                if (mainToolbar != null) mainToolbar.setTitle("Shop");
+            } else {
+                showListenNow();
+                if (searchBox != null) searchBox.setHint(item.getTitle());
+                if (mainToolbar != null) mainToolbar.setTitle(item.getTitle());
+            }
+        };
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
