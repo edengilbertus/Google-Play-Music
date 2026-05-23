@@ -196,15 +196,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, mainToolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
-        drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                if (pendingNavAction != null) {
-                    pendingNavAction.run();
-                    pendingNavAction = null;
-                }
-            }
-        });
         toggle.syncState();
 
         ImageButton searchBackButton = findViewById(R.id.search_back_button);
@@ -1131,6 +1122,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         };
 
         drawerLayout.closeDrawer(GravityCompat.START);
+        
+        // Execute the UI swap after a short delay so it happens *while* the drawer is closing,
+        // hiding the transition from the user without blocking the start of the drawer animation.
+        handler.postDelayed(() -> {
+            if (pendingNavAction != null) {
+                pendingNavAction.run();
+                pendingNavAction = null;
+            }
+        }, 150);
+        
         return true;
     }
 
