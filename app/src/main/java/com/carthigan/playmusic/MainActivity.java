@@ -52,6 +52,7 @@ import com.carthigan.playmusic.api.models.TrackJson;
 import com.carthigan.playmusic.data.LocalMusicHelper;
 import com.carthigan.playmusic.data.RecentActivityManager;
 import com.carthigan.playmusic.service.MusicService;
+import com.carthigan.playmusic.utils.AppUpdater;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
@@ -150,6 +151,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        AppUpdater.checkForUpdates(this);
         
         recentActivityManager = new RecentActivityManager(this);
 
